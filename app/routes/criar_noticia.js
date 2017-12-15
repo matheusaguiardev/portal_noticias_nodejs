@@ -6,9 +6,9 @@ module.exports = function(app){
     app.post('/noticias/salvar',function(req, res){
         var noticia = req.body;
         var connection = app.config.dbConnection(); // importado pelo consign
-        var noticiasModel = app.app.models.noticiasModel; // importado pelo consign
+        var noticiasModel = new app.app.models.NoticiasDAO(connection); // importado pelo consign
 
-        noticiasModel.salvarNoticia(noticia, connection, function(erro, result){
+        noticiasModel.salvarNoticia(noticia, function(erro, result){
           res.redirect('/noticias');
         });
     });
