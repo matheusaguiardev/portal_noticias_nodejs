@@ -1,4 +1,4 @@
-module.exports.noticias = function(app,req, res){
+module.exports.noticias = function(app, req, res){
     var connection = app.config.dbConnection(); // importado pelo consign
     var noticiasModel = new app.app.models.NoticiasDAO(connection); // importado pelo consign
 
@@ -8,11 +8,13 @@ module.exports.noticias = function(app,req, res){
 }
 
 
-module.exports.noticia = function(app,req, res){
+module.exports.noticia = function(app, req, res){
     var connection = app.config.dbConnection(); 
-    var noticiasModel = app.app.models.NoticiasDAO(connection);
-
-    noticiasModel.getNoticia(connection, function(erro, result){
+    var noticiasModel = new app.app.models.NoticiasDAO(connection);
+    var idNoticia = req.query
+    
+    noticiasModel.getNoticia(idNoticia.id_noticia, function(error, result){
+        console.log(result);
         res.render('noticias/noticia', {noticia: result[0]});
     });
 }

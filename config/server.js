@@ -8,7 +8,7 @@ app.set('view engine', 'ejs'); // modificar a engine de view do express
 app.set('views', './app/views'); // mudar o caminho da pasta de views
 
 app.use(bodyParser.urlencoded({extended: true})); // adicionar o body parser no express (middleware)
-
+app.use(express.static('./app/public')); // possivel acessar tudo o que esta no arquivo public como se estivesse na raiz do app
 app.use(expressValidator()); // adicionando no express como middleware
 
 consign()
