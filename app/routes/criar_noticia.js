@@ -1,6 +1,6 @@
 module.exports = function(app){
     app.get('/criar_noticia',function(req, res){
-        res.render('admin/form_add_noticia');
+        res.render('admin/form_add_noticia', {erros:{}, noticia:{}});
     });
 
     app.post('/noticias/salvar',function(req, res){
@@ -14,9 +14,10 @@ module.exports = function(app){
         req.assert('noticia','Notícia é obrigatório').notEmpty();
 
         var erros = req.validationErrors();
-
+        
         if(erros){
-            res.render('admin/form_add_noticia');
+            
+            res.render('admin/form_add_noticia', {erros:erros, noticia:noticia});
             return;
         }
 
