@@ -1,11 +1,10 @@
 
 module.exports = function(app){
     app.get('/noticias',function(req, res){
-        var connection = app.config.dbConnection(); // importado pelo consign
-        var noticiasModel = new app.app.models.NoticiasDAO(connection); // importado pelo consign
+       app.app.controllers.noticias.noticias(app, req, res);
+    });
 
-        noticiasModel.getNoticias(function(error, result){
-            res.render('noticias/noticias', {noticias: result});
-        });
+    app.get('/noticia',function(req, res){
+       app.app.controllers.noticias.noticia(app, req, res);
     });
 }

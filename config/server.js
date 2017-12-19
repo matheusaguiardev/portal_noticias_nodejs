@@ -15,6 +15,7 @@ consign()
     .include('./app/routes') // faz o require das rotas dentro do app !
     .then('app/models') // depois de incluir adiciona os models
     .then('config/dbConnection.js') // fazer o require da conexao com o banco de dados depois de importar as rotas / Ele já executa o módulo
+    .then('app/controllers')
     .into(app); // scanneia o diretório e faz os imports dos módulos dentro do app 
 
 module.exports = app;
